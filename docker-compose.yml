@@ -1,16 +1,36 @@
-version: '3.1'
-
+version: "3"
 services:
-
-  db:
-    image: mysql
-    container_name: mysql-server
+  postgresql:
+    image: postgres
     restart: always
+    container_name: postgres_local
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
-      MYSQL_DATABASE : dbtest
-      MYSQL_PASSWORD: root
-      MYSQL_ROOT_PASSWORD: root
 
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
 
+    volumes:
+      - ./data/postgres/:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: qkrgmlrud!1
+
+    volumes:
+      - ./data/pgadmin/:/var/lib/pgadmin
+
+  redis:
+    image: redis
+    container_name: email-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis/:/var/lib/redis
