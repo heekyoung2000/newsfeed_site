@@ -15,7 +15,7 @@ public class NaverMailConfig {
         mailSender.setHost("smtp.naver.com");
         mailSender.setPort(465);
         mailSender.setUsername("heekyoung2000");
-        mailSender.setPassword("qkrgmlrud!12");
+        mailSender.setPassword("");
 
         Properties javaMailProperties = new Properties();
         javaMailProperties.put("mail.transport.protocol","smtp");
