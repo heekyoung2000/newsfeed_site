@@ -74,7 +74,7 @@ public class MailSendService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        redisUtil.setDataExpire(Integer.toString(authNumber),toMail,60*5L);
+        redisUtil.setDataExpire(Integer.toString(authNumber),toMail,60*60L); //60분으로 늘림
     }
 
 }
