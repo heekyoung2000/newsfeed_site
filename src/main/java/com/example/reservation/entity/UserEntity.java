@@ -23,6 +23,8 @@ public class UserEntity {
 
     private String email;//이메일
 
+
+
     private String role; // 권한
 
     //getter,setter
@@ -63,6 +65,9 @@ public class UserEntity {
         this.role = role;
     }
 
+    public String getRole() {
+        return role;
+    }
 
 
 
