@@ -23,7 +23,7 @@ public class JoinController {
         System.out.println(joinDTO.getIntroduce());
         System.out.println(emailRequestDTO.getEmail());
         joinService.joinProcess(joinDTO,emailRequestDTO);
+
         return "ok";
     }
-
 }

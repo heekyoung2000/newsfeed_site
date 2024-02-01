@@ -68,7 +68,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         System.out.println("✅✅ role 받아옴 "+role);
 
-        String token = jwtUtil.createJwt(username, role, 60*60*10L);
+        String token = jwtUtil.createJwt(username, role, 30*60*1000L);
 
         System.out.println("✅✅ token 받아옴 "+token);
         response.addHeader("Authorization", "Bearer " + token);

@@ -20,17 +20,19 @@ public class CommentDTO {
     //댓글 내용
     private String content;
     //게시글 내용
-    private BoardEntity board;
-  
-    private UserEntity username;
+    private Long boardId;
 
-    //????
-    public CommentDTO(Long id, Long id1, UserEntity username, String content) {
+    private String username;
+
+    public CommentDTO(BoardEntity board, Long id, UserEntity username, String content) {
     }
 
+
+    //????
+ 
     public static CommentDTO createCommentDTO(CommentEntity comment) {
         return new CommentDTO(
-                comment.getId(),//댓글 id
+                comment.getBoard(),//댓글 id
                 comment.getBoard().getId(), //댓글 엔티티가 속한 부모 게시글의 id
                 comment.getUsername(),
                 comment.getContent() // 댓글 엔티티의 내용
@@ -45,11 +47,11 @@ public class CommentDTO {
         return content;
     }
 
-    public BoardEntity getBoard() {
-        return board;
+    public Long getBoardId() {
+        return boardId;
     }
 
-    public UserEntity getUsername() {
+    public String getUsername() {
         return username;
     }
 }
