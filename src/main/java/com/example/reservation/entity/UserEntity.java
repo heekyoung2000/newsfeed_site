@@ -27,6 +27,9 @@ public class UserEntity {
 
     @Column(nullable = false)
     private String email;//이메일
+    
+    @Column(nullable = false) // null 값도 허용!
+    private String profileImagePath; // 프로필 이미지 경로
 
 
 
@@ -74,8 +77,11 @@ public class UserEntity {
         return role;
     }
 
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
 
-
-
-
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
+    }
 }
