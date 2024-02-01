@@ -1,5 +1,6 @@
 package com.example.reservation.dto;
 
+import org.springframework.web.multipart.MultipartFile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,8 @@ public class JoinDTO {
     private String password;//비밀번호
 
     private String introduce;//인사말
+    
+    private MultipartFile profileImage; // 프로필 이미지
 
     public String getIntroduce() {
         return introduce;
@@ -41,10 +44,11 @@ public class JoinDTO {
         this.password = password;
     }
 
+    public MultipartFile getProfileImage() {
+        return profileImage;
+    }
 
-
-
-
-
-
+    public void setProfileImage(MultipartFile profileImage) {
+        this.profileImage = profileImage;
+    }
 }
