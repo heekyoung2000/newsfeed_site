@@ -36,7 +36,7 @@ public class BoardResponseDTO {
     }
 
     public BoardResponseDTO(BoardEntity entity){
-        this.id = entity.getId();
+        this.id = entity.getId();//null로 바꿔야 하나?
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.author = entity.getAuther();
