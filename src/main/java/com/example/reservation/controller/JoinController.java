@@ -4,6 +4,9 @@ package com.example.reservation.controller;
 import com.example.reservation.Service.JoinService;
 import com.example.reservation.dto.EmailRequestDTO;
 import com.example.reservation.dto.JoinDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,4 +35,13 @@ public class JoinController {
 
 
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest servletRequest){
+        joinService.logout();
+        return ResponseEntity.status(HttpStatus.OK).body("로그아웃된 회원입니다.");
+
+    }
+
+
 }
