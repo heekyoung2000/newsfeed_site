@@ -1,9 +1,11 @@
 package com.example.reservation.jwt;
 
 import com.example.reservation.dto.CustomUserDetails;
+import com.example.reservation.util.RedisUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,11 +22,14 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     //JWTUtil 주입
     private final JWTUtil jwtUtil;
-    public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
+
+    @Autowired
+    private final RedisUtil redisUtil; //  객체의 인스턴스 생성
+    public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil, RedisUtil redisUtil) {
 
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
-
+        this.redisUtil = redisUtil;
     }
 
     @Override
@@ -71,6 +76,8 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         String token = jwtUtil.createJwt(username, role, 30*60*1000L);
 
         System.out.println("✅✅ token 받아옴 "+token);
+        //로그아웃 구분하기 위해 redis에 저장
+        redisUtil.setData(username,token);
         response.addHeader("Authorization", "Bearer " + token);
     }
 
@@ -82,4 +89,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         System.out.println("Authentication failed: " + failed.getMessage()); // 실패 이유 출력
         System.out.println("fail");
     }
+
+
 }

@@ -3,6 +3,7 @@ package com.example.reservation.config;
 import com.example.reservation.jwt.JWTFilter;
 import com.example.reservation.jwt.JWTUtil;
 import com.example.reservation.jwt.LoginFilter;
+import com.example.reservation.util.RedisUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,10 +23,12 @@ public class SecurityConfig {
     private final AuthenticationConfiguration authenticationConfiguration;
     //JWTUtil 주입
     private final JWTUtil jwtUtil;
+    private final RedisUtil redisUtil;
 
-    public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil) {
+    public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil, RedisUtil redisUtil) {
         this.authenticationConfiguration = authenticationConfiguration;
         this.jwtUtil = jwtUtil;
+        this.redisUtil = redisUtil;
     }
 
 
@@ -62,20 +65,20 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth)->auth
                         .requestMatchers("/login","/","/join","/mailSend","/authCheck").permitAll()
                         //이 경로로 접근하는 사람 모두 허용
-                        .requestMatchers("/admin","/board/{boardId}/comments","/board/new","/board/post","/board/post/{id}").hasRole("ADMIN")
+                        .requestMatchers("/admin","/board/{boardId}/comments","/board/new","/board/post","/board/post/{id}","/logout").hasRole("ADMIN")
                         //admin 권한을 가진 사용자만 접근 허용
                         .anyRequest().authenticated());
 
         //JWTFilter 등록
         http
-                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+                .addFilterBefore(new JWTFilter(jwtUtil,redisUtil), LoginFilter.class);
 
 //        http
 //                .addFilterBefore(new LogoutFilter((LogoutSuccessHandler) jwtUtil), JWTFilter.class);
 
         //필터 추가 LoginFilter()는 인자를 받음 (AuthenticationManager() 메소드에 authenticationConfiguration 객체를 넣어야 함) 따라서 등록 필요
         http
-                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),jwtUtil,redisUtil), UsernamePasswordAuthenticationFilter.class);
         //세션 설정
         http
                 .sessionManagement((session)-> session
