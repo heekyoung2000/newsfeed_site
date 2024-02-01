@@ -43,10 +43,14 @@ public class CommentService {
         //1.게시글 조회 및 예외 발생
         BoardEntity board = boardRepository.findById(boardId)
                 .orElseThrow(()-> new IllegalArgumentException("댓글 생성 실패!"+ "대상 게시글이 없습니다."));
+
+
         //2. 댓글 엔티티 생성
         CommentEntity comment = CommentEntity.createComment(dto,board);
         //3. 댓글 엔티티를 DB에 저장
+
         CommentEntity created = commentRepository.save(comment);
+        System.out.println("Created Entity: " + created);
         //4. DTO로 변환해 반환
         return CommentDTO.createCommentDTO(created);
     }
