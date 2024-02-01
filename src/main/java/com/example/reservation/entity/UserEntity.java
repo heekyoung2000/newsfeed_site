@@ -12,15 +12,20 @@ import lombok.Setter;
 @Setter
 public class UserEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String username; //이름
+    @Column(nullable = false)
     private String password;
-    
+
+    @Column(nullable = false)
     private String introduce;//인사말
 
+    @Column(nullable = false)
     private String email;//이메일
 
 

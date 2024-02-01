@@ -25,7 +25,7 @@ public class BoardService {
         return boardRepository.findAllByOrderByCreatedAtDesc().stream().map(BoardResponseDTO::new).toList();
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public BoardResponseDTO createPost(BoardRequestDTO requestDTO){
         BoardEntity board = new BoardEntity(requestDTO);
         boardRepository.save(board);

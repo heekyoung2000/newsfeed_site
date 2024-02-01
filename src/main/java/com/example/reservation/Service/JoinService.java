@@ -31,7 +31,6 @@ public class JoinService {
         Boolean isExist = userRepository.existsByUsername(username);
 
         if (isExist) {
-
             return;
         }
 

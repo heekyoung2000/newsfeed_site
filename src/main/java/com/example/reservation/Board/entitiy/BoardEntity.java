@@ -13,7 +13,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class BoardEntity extends BoardTimestamp {
+
     //id와 generatedvalue를 동시에 사용하면 jpa가 기본키를 자동으로 생성해줌
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,7 +34,6 @@ public class BoardEntity extends BoardTimestamp {
 
     @Column(nullable = false)
     private String password;
-
 
     //생성자를 만들어줘야함
     public BoardEntity(BoardRequestDTO requestDTO){

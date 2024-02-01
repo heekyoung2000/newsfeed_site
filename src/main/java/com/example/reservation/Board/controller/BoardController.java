@@ -4,8 +4,6 @@ import com.example.reservation.Board.Repository.BoardRepository;
 import com.example.reservation.Board.Service.BoardService;
 import com.example.reservation.Board.dto.BoardRequestDTO;
 import com.example.reservation.Board.dto.BoardResponseDTO;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,18 +31,18 @@ public class BoardController {
         //현재 로그인한 사용자 정보 가져오기
 
         //로그인한 사용자가 없거나, 사용자 정보가 비정상적인 경우에 예외처리
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUsername = authentication.getName();
-
-        // 로그인한 사용자가 없거나, 사용자 정보가 비정상적인 경우에 예외처리
-        if (currentUsername == null || currentUsername.isEmpty()) {
-            throw new RuntimeException();
-        }
-
-        // 로그인한 사용자와 작성자(author)가 일치하는지 확인
-        if (!currentUsername.equals(requestDTO.getAuthor())) {
-            return boardService.createPost(requestDTO);
-        }
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentUsername = authentication.getName();
+//
+//        // 로그인한 사용자가 없거나, 사용자 정보가 비정상적인 경우에 예외처리
+//        if (currentUsername == null || currentUsername.isEmpty()) {
+//            throw new RuntimeException();
+//        }
+//
+//        // 로그인한 사용자와 작성자(author)가 일치하는지 확인
+//        if (!currentUsername.equals(requestDTO.getAuthor())) {
+//            return boardService.createPost(requestDTO);
+//        }
         return boardService.createPost(requestDTO);
 
     }

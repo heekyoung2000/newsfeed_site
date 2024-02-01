@@ -10,11 +10,9 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<CommentEntity,Long> {
     //특정 게시글의 모든 댓글 조회
     @Query(value = "SELECT * FROM comment_table WHERE board_id = :boardId", nativeQuery = true)
-    static List<CommentEntity> findByBoardId(Long boardId) {
-        return null;
-    }
+    List<CommentEntity> findByBoardId(Long boardId);
 
     //특정 닉네임의 모든 댓글 조회
 
-    
+
 }

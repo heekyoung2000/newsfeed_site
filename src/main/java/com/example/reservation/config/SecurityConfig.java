@@ -1,5 +1,6 @@
 package com.example.reservation.config;
 
+import com.example.reservation.jwt.JWTFilter;
 import com.example.reservation.jwt.JWTUtil;
 import com.example.reservation.jwt.LoginFilter;
 import org.springframework.context.annotation.Bean;
@@ -61,10 +62,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth)->auth
                         .requestMatchers("/login","/","/join","/mailSend","/authCheck").permitAll()
                         //이 경로로 접근하는 사람 모두 허용
-                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/admin","/board/{boardId}/comments","/board/new","/board/post","/board/post/{id}").hasRole("ADMIN")
                         //admin 권한을 가진 사용자만 접근 허용
                         .anyRequest().authenticated());
 
+        //JWTFilter 등록
+        http
+                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+
+//        http
+//                .addFilterBefore(new LogoutFilter((LogoutSuccessHandler) jwtUtil), JWTFilter.class);
 
         //필터 추가 LoginFilter()는 인자를 받음 (AuthenticationManager() 메소드에 authenticationConfiguration 객체를 넣어야 함) 따라서 등록 필요
         http
