@@ -16,8 +16,6 @@ public class BoardEntity extends BoardTimestamp {
 
     //id와 generatedvalue를 동시에 사용하면 jpa가 기본키를 자동으로 생성해줌
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -34,6 +32,9 @@ public class BoardEntity extends BoardTimestamp {
 
     @Column(nullable = false)
     private String password;
+
+    @Column
+    private Long likecount;
 
     //생성자를 만들어줘야함
     public BoardEntity(BoardRequestDTO requestDTO){
@@ -82,5 +83,13 @@ public class BoardEntity extends BoardTimestamp {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getLikecount() {
+        return likecount;
+    }
+
+    public void setLikecount(Long likecount) {
+        this.likecount = likecount;
     }
 }
