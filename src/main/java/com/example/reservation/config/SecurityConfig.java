@@ -65,7 +65,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth)->auth
                         .requestMatchers("/login","/","/join","/mailSend","/authCheck").permitAll()
                         //이 경로로 접근하는 사람 모두 허용
-                        .requestMatchers("/admin","/board/{boardId}/comments","/board/new","/board/post","/board/post/{id}","/logout").hasRole("ADMIN")
+                        .requestMatchers("/admin","/board/{boardId}/comments","/board/new","/board/post","/board/post/{id}","/logout","/board/like").hasRole("ADMIN")
                         //admin 권한을 가진 사용자만 접근 허용
                         .anyRequest().authenticated());
 

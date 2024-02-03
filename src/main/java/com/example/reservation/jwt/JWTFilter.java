@@ -45,6 +45,7 @@ public class JWTFilter extends OncePerRequestFilter {
         System.out.println("authorization now");
         //Bearer 부분 제거 후 순수 토큰만 획득
         String origin_token = authorization;
+        System.out.println(origin_token);
         String token = authorization.split(" ")[1];
 
 
@@ -71,7 +72,7 @@ public class JWTFilter extends OncePerRequestFilter {
             return;
         }
         String tokenFromRedis = redisUtil.getData(username);
-        if (!origin_token.equals(tokenFromRedis)) {
+        if (!token.equals(tokenFromRedis)) {
             // Redis에 해당 username을 키로 하는 데이터와 토큰이 일치하지 않음
             System.out.println("username은 있지만 토큰이 없음: " + username);
             ResponseEntity.status(HttpStatus.OK).body("로그아웃된 회원입니다.");
