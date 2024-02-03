@@ -1,6 +1,6 @@
-package com.example.reservation.dto;
+package com.example.reservation.member.dto;
 
-import com.example.reservation.entity.UserEntity;
+import com.example.reservation.member.entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

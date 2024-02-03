@@ -1,9 +1,9 @@
-package com.example.reservation.Service;
+package com.example.reservation.member.Service;
 
-import com.example.reservation.Repository.UserRepository;
-import com.example.reservation.dto.EmailRequestDTO;
-import com.example.reservation.dto.JoinDTO;
-import com.example.reservation.entity.UserEntity;
+import com.example.reservation.member.Repository.UserRepository;
+import com.example.reservation.member.dto.EmailRequestDTO;
+import com.example.reservation.member.dto.JoinDTO;
+import com.example.reservation.member.entity.UserEntity;
 import com.example.reservation.jwt.JWTUtil;
 import com.example.reservation.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;

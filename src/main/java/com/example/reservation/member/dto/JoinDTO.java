@@ -1,4 +1,4 @@
-package com.example.reservation.dto;
+package com.example.reservation.member.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 import lombok.AllArgsConstructor;

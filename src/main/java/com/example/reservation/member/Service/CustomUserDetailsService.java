@@ -1,8 +1,8 @@
-package com.example.reservation.Service;
+package com.example.reservation.member.Service;
 
-import com.example.reservation.Repository.UserRepository;
-import com.example.reservation.dto.CustomUserDetails;
-import com.example.reservation.entity.UserEntity;
+import com.example.reservation.member.Repository.UserRepository;
+import com.example.reservation.member.dto.CustomUserDetails;
+import com.example.reservation.member.entity.UserEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

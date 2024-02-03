@@ -1,6 +1,6 @@
 package com.example.reservation.jwt;
 
-import com.example.reservation.dto.CustomUserDetails;
+import com.example.reservation.member.dto.CustomUserDetails;
 import com.example.reservation.util.RedisUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;

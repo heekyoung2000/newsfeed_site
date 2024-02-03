@@ -1,9 +1,9 @@
-package com.example.reservation.controller;
+package com.example.reservation.member.controller;
 
 
-import com.example.reservation.Service.JoinService;
-import com.example.reservation.dto.EmailRequestDTO;
-import com.example.reservation.dto.JoinDTO;
+import com.example.reservation.member.Service.JoinService;
+import com.example.reservation.member.dto.EmailRequestDTO;
+import com.example.reservation.member.dto.JoinDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
