@@ -1,9 +1,12 @@
 package com.example.reservation.member.entity;
 
 
+import com.example.reservation.Follow.FollowEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 // 회원가입 객체 설정
 
 @Entity
@@ -32,10 +35,25 @@ public class UserEntity {
     private String profileImagePath; // 프로필 이미지 경로
 
 
+    //팔로우
+    @OneToMany(mappedBy = "following",fetch = FetchType.LAZY)
+    private List<FollowEntity> followings;
+    @OneToMany(mappedBy = "follower",fetch = FetchType.LAZY)
+    private List<FollowEntity> followers;
 
     private String role; // 권한
 
+
     //getter,setter
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -83,5 +101,14 @@ public class UserEntity {
 
     public void setProfileImagePath(String profileImagePath) {
         this.profileImagePath = profileImagePath;
+    }
+
+    public List<FollowEntity> getFollowers() {
+        return followers;
+    }
+
+    // FollowingList에 대한 getter 메서드
+    public List<FollowEntity> getFollowing() {
+        return followings;
     }
 }
