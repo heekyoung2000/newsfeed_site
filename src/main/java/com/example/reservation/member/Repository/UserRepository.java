@@ -1,6 +1,6 @@
-package com.example.reservation.Repository;
+package com.example.reservation.member.Repository;
 
-import com.example.reservation.entity.UserEntity;
+import com.example.reservation.member.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {

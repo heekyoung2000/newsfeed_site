@@ -1,8 +1,8 @@
-package com.example.reservation.controller;
+package com.example.reservation.member.controller;
 
-import com.example.reservation.Service.MailSendService;
-import com.example.reservation.dto.EmailCheckDTO;
-import com.example.reservation.dto.EmailRequestDTO;
+import com.example.reservation.member.Service.MailSendService;
+import com.example.reservation.member.dto.EmailCheckDTO;
+import com.example.reservation.member.dto.EmailRequestDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

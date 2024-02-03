@@ -1,7 +1,7 @@
 package com.example.reservation.Like;
 
 import com.example.reservation.Board.entitiy.BoardEntity;
-import com.example.reservation.entity.UserEntity;
+import com.example.reservation.member.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

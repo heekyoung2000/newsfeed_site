@@ -1,4 +1,4 @@
-package com.example.reservation.entity;
+package com.example.reservation.member.entity;
 
 
 import jakarta.persistence.*;

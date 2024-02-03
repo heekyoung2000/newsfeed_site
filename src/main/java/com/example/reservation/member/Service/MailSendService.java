@@ -1,4 +1,4 @@
-package com.example.reservation.Service;
+package com.example.reservation.member.Service;
 
 import com.example.reservation.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
