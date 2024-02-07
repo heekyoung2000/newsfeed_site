@@ -1,3 +1,71 @@
+//plugins {
+//	id 'java'
+//	id 'org.springframework.boot' version '3.2.2'
+//	id 'io.spring.dependency-management' version '1.1.4'
+//}
+//
+//subprojects {
+//	group = 'com.example'
+//	version = '0.0.1-SNAPSHOT'
+//
+//	apply plugin: 'java'
+//	apply plugin: 'org.springframework.boot'
+//	apply plugin: 'io.spring.dependency-management'
+//
+//	java {
+//		sourceCompatibility = '17'
+//	}
+//
+//	configurations {
+//		compileOnly {
+//			extendsFrom annotationProcessor
+//		}
+//	}
+//
+//	repositories {
+//		mavenCentral()
+//	}
+//
+//	ext {
+//		springCloudVersion = "2023.0.0"
+//	}
+//
+//	dependencies {
+//		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+//		implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//		implementation 'org.projectlombok:lombok'
+//		implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//		implementation 'org.springframework.boot:spring-boot-starter-web'
+//		implementation 'org.springframework.boot:spring-boot-starter-validation'
+//		implementation 'org.springframework.boot:spring-boot-starter-security'
+//		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//		implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+//		compileOnly 'org.projectlombok:lombok'
+//		runtimeOnly 'org.postgresql:postgresql'
+//		implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+//		implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
+//		implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+//		implementation 'javax.mail:mail:1.4.7'
+//		implementation 'org.springframework:spring-context-support:5.3.9'
+//		developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//		annotationProcessor 'org.projectlombok:lombok'
+//		testImplementation 'org.projectlombok:lombok'
+//		testAnnotationProcessor 'org.projectlombok:lombok'
+//		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//		testImplementation 'org.springframework.security:spring-security-test'
+//		implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
+//	}
+//
+//	dependencyManagement {
+//		imports {
+//			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//		}
+//	}
+//
+//	tasks.named('test') {
+//		useJUnitPlatform()
+//	}
+//}
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.2'
@@ -20,8 +88,15 @@ configurations {
 repositories {
 	mavenCentral()
 }
+//springcloud 적용하기
+ext {
+	set('springCloudVersion', "2023.0.0")
+}
 
 dependencies {
+	//eureka 적용
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 	//lombok 추가
 	implementation 'org.projectlombok:lombok'
@@ -59,9 +134,18 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+	//feign 추가--선언적 웹서비스 클라이언트
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
 
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+

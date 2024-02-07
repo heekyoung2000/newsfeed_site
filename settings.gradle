@@ -1,1 +1,6 @@
 rootProject.name = 'reservation'
+include 'UserService'
+include 'ActivityService'
+include 'NewsfeedService'
+include 'Eureka'
+
