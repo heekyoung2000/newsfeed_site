@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/NewsfeedService")
 public class CommentController {
     @Autowired
     private CommentService commentService;//댓글 리파지터리 객체 주입

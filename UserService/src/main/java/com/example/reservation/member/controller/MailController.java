@@ -6,9 +6,11 @@ import com.example.reservation.member.dto.EmailRequestDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/UserService")
 public class MailController {
     private final MailSendService mailService;
 
