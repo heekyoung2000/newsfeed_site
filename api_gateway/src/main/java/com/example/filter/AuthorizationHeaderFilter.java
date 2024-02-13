@@ -78,9 +78,6 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             }
 
 
-
-            
-             // 200 OK로 변경
             request = request.mutate()
                     .header("X-USERNAME", username)
                     .build();
@@ -90,8 +87,6 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             return chain.filter(exchange.mutate()
                     .request(request)
                     .build());
-
-            //return onSuccess(exchange,"authorization 필터 넘어옴", HttpStatus.OK);
         });
     }
 
