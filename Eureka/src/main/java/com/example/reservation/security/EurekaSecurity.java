@@ -39,8 +39,8 @@ public class EurekaSecurity {
     public UserDetailsService userDetailsService() {
 
         UserDetails user1 = User.builder()
-                .username("아이디")
-                .password(bCryptPasswordEncoder().encode("비밀번호"))
+                .username("heekyoung2000")
+                .password(bCryptPasswordEncoder().encode("1234"))
                 .roles("ADMIN")
                 .build();
 

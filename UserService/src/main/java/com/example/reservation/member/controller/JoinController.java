@@ -9,11 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @ResponseBody
+@RequestMapping("/UserService")
 public class JoinController {
 
     private final JoinService joinService;
@@ -36,12 +38,14 @@ public class JoinController {
 
     }
 
+
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletRequest servletRequest){
         joinService.logout();
         return ResponseEntity.status(HttpStatus.OK).body("로그아웃된 회원입니다.");
 
     }
+
 
 
 }

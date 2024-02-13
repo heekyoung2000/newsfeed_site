@@ -30,6 +30,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
         this.redisUtil = redisUtil;
+        setFilterProcessesUrl("/UserService/login");
     }
 
     @Override

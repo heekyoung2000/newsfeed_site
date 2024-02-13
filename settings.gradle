@@ -3,4 +3,6 @@ include 'UserService'
 include 'ActivityService'
 include 'NewsfeedService'
 include 'Eureka'
+include 'api_gateway'
+include 'example'
 

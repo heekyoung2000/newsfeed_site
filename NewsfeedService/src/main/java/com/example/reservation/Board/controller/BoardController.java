@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/NewsfeedService")
 public class BoardController {
     private final BoardService boardService;
     private final BoardRepository boardRepository;
@@ -24,6 +25,7 @@ public class BoardController {
     //게시글 전체 목록 조회
     @GetMapping("/board/post")
     public List<BoardResponseDTO> getPosts(){
+        System.out.println("컨트롤러 넘어옴");
         return boardService.getPosts();
     }
 

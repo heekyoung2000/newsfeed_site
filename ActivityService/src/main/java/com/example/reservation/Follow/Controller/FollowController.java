@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users/follow")
+@RequestMapping("/ActivityService")
 public class FollowController {
     private final CustomUserDetailsService customUserDetailsService;
     private final FollowService followService;
@@ -21,7 +21,7 @@ public class FollowController {
         this.followService = followService;
     }
 
-    @PostMapping
+    @PostMapping("/users/follow")
     public ResponseEntity follow(@RequestBody FollowRequest followRequest) {
         Long followerId = followRequest.getFollowerId();
         Long followingId = followRequest.getFollowingId();
