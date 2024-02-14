@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public UserEntity loadUserById(Long id) {
-        return (UserEntity) userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
+        return userRepository.findById(id);
+
     }
 }

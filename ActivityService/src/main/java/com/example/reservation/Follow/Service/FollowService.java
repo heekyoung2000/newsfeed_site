@@ -1,6 +1,7 @@
 package com.example.reservation.Follow.Service;
 
 import com.example.reservation.Follow.FollowEntity;
+import com.example.reservation.Follow.client.UserClient;
 import com.example.reservation.Follow.repository.FollowRepository;
 import com.example.reservation.member.Repository.UserRepository;
 import com.example.reservation.member.entity.UserEntity;
@@ -10,19 +11,24 @@ import org.springframework.stereotype.Service;
 public class FollowService {
     private final FollowRepository followRepository;
     private final UserRepository userRepository;
+    private final UserClient userClient;
 
-    public FollowService(FollowRepository followRepository, UserRepository userRepository) {
+    public FollowService(FollowRepository followRepository, UserRepository userRepository, UserClient userClient) {
         this.followRepository = followRepository;
         this.userRepository = userRepository;
+        this.userClient = userClient;
     }
 
     public String follow(Long followerId, Long followingId) {
         System.out.println(followerId);
         System.out.println(followingId);
-        UserEntity follower = (UserEntity) userRepository.findById(followerId)
-                .orElseThrow(() -> new IllegalArgumentException("Follower not found with id: " + followerId));
-        UserEntity following = (UserEntity) userRepository.findById(followingId)
-                .orElseThrow(() -> new IllegalArgumentException("Following not found with id: " + followingId));
+//        userClient.getUserById(followerId);
+//        userClient.getUserById(followingId);
+        UserEntity follower =  userRepository.findById(followerId);
+//                .orElseThrow(() -> new IllegalArgumentException("Follower not found with id: " + followerId));
+        UserEntity following =  userRepository.findById(followingId);
+//                .orElseThrow(() -> new IllegalArgumentException("Following not found with id: " + followingId));
+
 
         // 이미 팔로우 관계가 존재하는지 확인
         if (followRepository.existsByFollowerAndFollowing(follower, following)) {
