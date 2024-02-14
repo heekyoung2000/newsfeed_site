@@ -1,10 +1,10 @@
 package com.example.reservation.member.dto;
 
-import org.springframework.web.multipart.MultipartFile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Setter
 @Getter
@@ -51,4 +51,6 @@ public class JoinDTO {
     public void setProfileImage(MultipartFile profileImage) {
         this.profileImage = profileImage;
     }
+
+
 }
