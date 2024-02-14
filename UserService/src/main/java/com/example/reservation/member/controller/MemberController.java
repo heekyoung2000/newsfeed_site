@@ -1,6 +1,7 @@
 package com.example.reservation.member.controller;
 
 
+import com.example.reservation.member.Repository.UserRepository;
 import com.example.reservation.member.Service.JoinService;
 import com.example.reservation.member.dto.EmailRequestDTO;
 import com.example.reservation.member.dto.JoinDTO;
@@ -20,10 +21,14 @@ import java.io.IOException;
 public class MemberController {
 
     private final JoinService joinService;
+    private final UserRepository userRepository;
 
-    public MemberController(JoinService joinService){
+
+    public MemberController(JoinService joinService,UserRepository userRepository){
         this.joinService = joinService;
+        this.userRepository = userRepository;
     }
+
     //회원가입
     @PostMapping("/join")
     public String JoinProcess(JoinDTO joinDTO, EmailRequestDTO emailRequestDTO,@RequestParam("profileImage") MultipartFile profileImage){
@@ -46,6 +51,13 @@ public class MemberController {
         joinService.logout();
         return ResponseEntity.status(HttpStatus.OK).body("로그아웃된 회원입니다.");
 
+    }
+
+    //유저 정보 조회
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserEntity> userInfo(@PathVariable Long id){
+        UserEntity getUser = userRepository.findById(id);
+        return ResponseEntity.ok(getUser);
     }
 
     //이름, 인사말 업데이트
