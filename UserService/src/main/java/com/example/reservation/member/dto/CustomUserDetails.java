@@ -43,6 +43,13 @@ public class CustomUserDetails implements UserDetails {
         return userEntity.getUsername();
     }
 
+    //이메일 userEntity에서 가져옴
+    public String getEmail() {
+        return userEntity.getEmail();
+    }
+    
+    
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

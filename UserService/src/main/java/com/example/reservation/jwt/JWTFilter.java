@@ -60,21 +60,23 @@ public class JWTFilter extends OncePerRequestFilter {
         }
 
         //토큰에서 username과 role 획득
-        String username = jwtUtil.getUsername(token);
+        //String username = jwtUtil.getUsername(token);
+        //토큰에서 email과 role 획득
+        String email = jwtUtil.getEmail(token);
         String role = jwtUtil.getRole(token);
 
         //Redis에서 username을 키로 가지고 있는지 확인
-        if(!redisUtil.hasKey(username)){
-            // Redis에 해당 username을 키로 하는 데이터가 존재하지 않음
-            System.out.println("redis에서 username을 찾을 수 없음 " + username);
+        if(!redisUtil.hasKey(email)){
+            // Redis에 해당 email을 키로 하는 데이터가 존재하지 않음
+            System.out.println("redis에서 email을 찾을 수 없음 " + email);
             ResponseEntity.status(HttpStatus.OK).body("로그아웃된 회원입니다.");
 //            response.getWriter().write("로그아웃된 회원입니다."); // 메시지 작성하여 반환
             return;
         }
-        String tokenFromRedis = redisUtil.getData(username);
+        String tokenFromRedis = redisUtil.getData(email);
         if (!token.equals(tokenFromRedis)) {
-            // Redis에 해당 username을 키로 하는 데이터와 토큰이 일치하지 않음
-            System.out.println("username은 있지만 토큰이 없음: " + username);
+            // Redis에 해당 emaile을 키로 하는 데이터와 토큰이 일치하지 않음
+            System.out.println("email 정보는 있지만 토큰이 없음: " + email);
             ResponseEntity.status(HttpStatus.OK).body("로그아웃된 회원입니다.");
 //            response.getWriter().write("로그아웃된 회원입니다."); // 메시지 작성하여 반환
             return;
@@ -83,7 +85,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
         //userEntitiy를 생성하여 값 set
         UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(username);
+        userEntity.setEmail(email);
         userEntity.setPassword("heeekoug");
         userEntity.setRole(role);
 
