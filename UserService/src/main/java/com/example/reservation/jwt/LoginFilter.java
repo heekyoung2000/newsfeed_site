@@ -37,11 +37,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
         //클라이언트 요청에서 username, password 추출
+        //이메일 인증으로 해도 무조건 username으로 받아야 함
         String username = obtainUsername(request);
         String password = obtainPassword(request);
 
-        System.out.println("📌📌authnetication"+username);
-        System.out.println("📌📌authnetication"+password);
+        System.out.println("📌📌받아옴 "+username);
+        System.out.println("📌📌받아옴 "+password);
 
         //스프링 시큐리티에서 username과 password를 검증하기 위해서는 token에 담아야 함
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password, null);
@@ -49,6 +50,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         System.out.println(authToken);
         //token에 담은 검증을 위한 AuthenticationManager로 전달
+        System.out.println(authenticationManager.authenticate(authToken));
         return authenticationManager.authenticate(authToken);
     }
 
@@ -62,6 +64,9 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         String username = customUserDetails.getUsername();
         System.out.println("✅✅ username 받아옴 "+username);
 
+        String email = customUserDetails.getEmail();
+        System.out.println("✅✅ email 받아옴 "+email);
+
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         System.out.println("✅✅ authorities 받아옴 ");
         Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
@@ -74,11 +79,11 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         System.out.println("✅✅ role 받아옴 "+role);
 
-        String token = jwtUtil.createJwt(username, role, 30*60*1000L);
+        String token = jwtUtil.createJwt(email, role, 30*60*1000L);
 
         System.out.println("✅✅ token 받아옴 "+token);
         //로그아웃 구분하기 위해 redis에 저장
-        redisUtil.setData(username,token);
+        redisUtil.setData(email,token);
         response.addHeader("Authorization", "Bearer " + token);
     }
 

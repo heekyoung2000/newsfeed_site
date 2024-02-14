@@ -58,7 +58,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
             //로그아웃한 토큰인지 확인
             //토큰에서 username과 role 획득
-            String username = jwtUtil.getUsername(jwt);
+            String username = jwtUtil.getEmail(jwt);
             String role = jwtUtil.getRole(jwt);
             System.out.println(role);
 
