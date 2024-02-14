@@ -28,7 +28,7 @@ public class JoinController {
         System.out.println(joinDTO.getUsername());
         System.out.println(joinDTO.getIntroduce());
         System.out.println(emailRequestDTO.getEmail());
-        try {
+        try {//joinDTO와 emailRequestDTO, profileImage를 통해 가입
             joinService.joinProcess(joinDTO,emailRequestDTO,profileImage);
             return "회원가입이 완료되었습니다.";
         } catch(Exception e){

@@ -18,13 +18,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    //토큰 인증정보를 조회하기 위해 사용(이메일)
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //db에서 조회
-        UserEntity userData = userRepository.findByUsername(username);
-
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        //db에서 이메일 조회
+        UserEntity userData = userRepository.findByEmail(email);
         System.out.println("✨✨✨✨"+userData);
-        System.out.println("✨✨✨✨"+username);
         if(userData!=null){
             //UserDetails에 담아서 return하면 AutneticationManager가 검증 함
             System.out.println("✔✔✔ userData가 customuserdetails로 넘어감");

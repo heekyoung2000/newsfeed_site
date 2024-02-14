@@ -48,7 +48,7 @@ public class JoinService {
 
         Boolean isExist = userRepository.existsByUsername(username);
 
-        if (isExist) {
+        if (isExist) { //만약 중복되는 이름이 있으면 return
             return;
         }
 
