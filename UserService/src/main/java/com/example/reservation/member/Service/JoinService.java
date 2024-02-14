@@ -82,8 +82,53 @@ public class JoinService {
             profileImage.transferTo(dest);
             profileImagePath = dest.getAbsolutePath();
 
+
         }
         return profileImagePath;
+    }
+    //회원정보 업데이트-유저이름 인사말
+    public UserEntity updateMember(Long id, String username, String introduce){
+        UserEntity userEntity = userRepository.findById(id);
+
+        userEntity.setUsername(username);
+        userEntity.setIntroduce(introduce);
+
+        System.out.println(username);
+        System.out.println(introduce);
+        return userRepository.save(userEntity);
+    }
+
+    //회원정보 업데이트- 비밀번호 수정
+    public UserEntity updatepassword(Long id,String password){
+        UserEntity userEntity = userRepository.findById(id);
+        userEntity.setPassword(bCryptPasswordEncoder.encode(password));
+
+       return userRepository.save(userEntity);
+    }
+
+    //회원정보 업데이트 - 프로필 이미지 수정
+    public UserEntity updateProfileImage(Long id,MultipartFile newProfileImage) throws IOException{
+        UserEntity userEntity = userRepository.findById(id);
+        String profileImagePath = "";// 기본값으로 빈 문자열 설정
+        if (newProfileImage != null && !newProfileImage.isEmpty()) {
+            //프로필 이미지를 저장할 디렉토리 경로 설정(절대 경로 설정)
+            String uploadDirectory = "D://바탕화면//reservation99";
+
+            //업로드할 파일명 생성
+            String fileName = newProfileImage.getOriginalFilename();
+            //프로필 이미지를 서버에 업로드하고 저장
+            File uploadPath = new File(uploadDirectory);
+            if (!uploadPath.exists()) {
+                uploadPath.mkdirs();
+            }
+            File dest = new File(uploadPath + "/" + fileName);
+            newProfileImage.transferTo(dest);
+            profileImagePath = dest.getAbsolutePath();
+
+
+        }
+        userEntity.setProfileImagePath(profileImagePath);
+        return userRepository.save(userEntity);
     }
 
     //logout 구현

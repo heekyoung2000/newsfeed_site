@@ -19,10 +19,10 @@ public class FollowService {
     public String follow(Long followerId, Long followingId) {
         System.out.println(followerId);
         System.out.println(followingId);
-        UserEntity follower = (UserEntity) userRepository.findById(followerId)
-                .orElseThrow(() -> new IllegalArgumentException("Follower not found with id: " + followerId));
-        UserEntity following = (UserEntity) userRepository.findById(followingId)
-                .orElseThrow(() -> new IllegalArgumentException("Following not found with id: " + followingId));
+        UserEntity follower =  userRepository.findById(followerId);
+//                .orElseThrow(() -> new IllegalArgumentException("Follower not found with id: " + followerId));
+        UserEntity following =  userRepository.findById(followingId);
+//                .orElseThrow(() -> new IllegalArgumentException("Following not found with id: " + followingId));
 
         // 이미 팔로우 관계가 존재하는지 확인
         if (followRepository.existsByFollowerAndFollowing(follower, following)) {
