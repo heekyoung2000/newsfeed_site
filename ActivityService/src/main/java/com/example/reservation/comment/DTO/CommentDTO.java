@@ -37,7 +37,7 @@ public class CommentDTO {
     public static CommentDTO createCommentDTO(CommentEntity comment) {
         return new CommentDTO(
                 comment.getId(),//댓글 id
-                comment.getBoard().getId(), //댓글 엔티티가 속한 부모 게시글의 id
+                comment.getBoard(), //댓글 엔티티가 속한 부모 게시글의 id
                 comment.getUsername(),
                 comment.getContent() // 댓글 엔티티의 내용
         );
