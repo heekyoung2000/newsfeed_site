@@ -45,8 +45,8 @@ ext {
 }
 
 dependencies {
-    implementation project(":UserService")//의존성 추가
-    implementation project(":NewsfeedService")//의존성 추가
+//    implementation project(":UserService")//의존성 추가
+//    implementation project(":NewsfeedService")//의존성 추가
 
     //eureka 적용
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
@@ -88,6 +88,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
+    //feign client 추가
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
 
 }
 dependencyManagement {
