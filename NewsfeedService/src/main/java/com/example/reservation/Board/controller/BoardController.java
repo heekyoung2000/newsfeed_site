@@ -22,7 +22,7 @@ public class BoardController {
     }
 
     //list 형태로 client로 보냄
-    //게시글 전체 목록 조회
+    //게시글 전체 목록 조회-이때 내가 팔로우한 모든 사람들의 아이디를 가져와서 id에 따른 게시판을 리스트에 넣어서 생성일자 순으로 출력?
     @GetMapping("/board/post")
     public List<BoardResponseDTO> getPosts(){
         System.out.println("컨트롤러 넘어옴");
