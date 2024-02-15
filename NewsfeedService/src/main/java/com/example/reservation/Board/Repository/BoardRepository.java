@@ -9,4 +9,5 @@ public interface BoardRepository extends JpaRepository<BoardEntity,Long> {
     List<BoardEntity> findAllByOrderByCreatedAtDesc();
 
 
-    }
+    boolean existsById(Long id);
+}
