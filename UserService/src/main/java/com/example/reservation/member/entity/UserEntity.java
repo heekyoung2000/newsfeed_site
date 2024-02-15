@@ -111,4 +111,5 @@ public class UserEntity {
     public List<FollowEntity> getFollowing() {
         return followings;
     }
+
 }

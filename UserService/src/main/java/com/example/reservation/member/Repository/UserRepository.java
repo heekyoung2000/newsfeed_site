@@ -14,4 +14,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     UserEntity findByEmail(String email);
 
     UserEntity findById(Long id);
+
+    //유저 db에 팔로우 목록이 있는지 확인
+    Boolean existsById(Long id);
 }
