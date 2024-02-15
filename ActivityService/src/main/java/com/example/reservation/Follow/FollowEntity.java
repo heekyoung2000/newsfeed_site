@@ -1,6 +1,5 @@
 package com.example.reservation.Follow;
 
-import com.example.reservation.member.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,46 +8,47 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="follow_table")
-public class FollowEntity {
+public class FollowEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "follower_id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "follower_id")
+    @Column
     //팔로우를 한사람
-    private UserEntity follower;
-    @ManyToOne(fetch = FetchType.LAZY)
+    private Long follower;
+//    @ManyToOne(fetch = FetchType.LAZY)
     //팔로우를 당한 사람
-    @JoinColumn(name = "following_id")
-    private UserEntity following;
+//    @JoinColumn(name = "following_id")
+    @Column
+    private Long following;
 
     public FollowEntity() {
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setFollower(UserEntity follower) {
-        this.follower = follower;
-    }
-
-    public void setFollowing(UserEntity following) {
-        this.following = following;
-    }
-
-    public Long getd() {
-        return id;
-    }
-
-    public UserEntity getFollower() {
+    public Long getFollower() {
         return follower;
     }
 
-    public UserEntity getFollowing() {
+    public void setFollower(Long follower) {
+        this.follower = follower;
+    }
+
+    public Long getFollowing() {
         return following;
     }
 
+    public void setFollowing(Long following) {
+        this.following = following;
+    }
 }
