@@ -11,7 +11,7 @@
 * Spring Cloud OpenFeign
 * Docker
 * Redis
-* Postgres
+* Postgresql
 
 ## IDE
 * IntelliJ
