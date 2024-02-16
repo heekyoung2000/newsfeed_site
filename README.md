@@ -1,6 +1,3 @@
-## 예약구매 사이트
-
-
 ## 💡 Introducetion
 예약 구매 사이트
 
@@ -20,4 +17,10 @@
 * IntelliJ
 * Docker desktop
 
-## [API 명세서](https://www.notion.so/API-eb8204de86bc42bb890865730250ee83)
+## ERD 설계
+
+<img src="https://github.com/heekyoung2000/reservation_site/assets/39753337/1882b69d-9c7e-4a8e-90e9-ee6b34c371d2" width="800" height="400">
+
+
+## API 명세서
+👉[API 명세서](https://www.notion.so/API-eb8204de86bc42bb890865730250ee83)
