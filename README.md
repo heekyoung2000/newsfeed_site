@@ -2,7 +2,7 @@
 예약 구매 사이트
 
 ## ⚒ Develop Select Stack
-* Spring boot version 3.0.x
+* Spring boot version 3.2.2
 * Gradle
 * Spring boot Security jwt
 * Spring boot JPA
